@@ -2,7 +2,8 @@
 FROM php:5.6-apache
 
 RUN apt-get install -y php5-mongo mongodb-server
+RUN apt-get update && apt-get install -y \
+		php5-mongo
+	&& rm -rf /var/lib/apt/lists/*
 
 COPY . /var/www/html
-
-CMD /etc/init.d/mongodb start && apachectl -DFOREGROUND
